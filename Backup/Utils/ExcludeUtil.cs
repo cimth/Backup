@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 
 namespace Backup.Utils
 {
@@ -92,11 +93,12 @@ namespace Backup.Utils
                 // "*/<dir>/*" in excludePath shows that a the sub dir <dir> should be ignored
                 if (excludePath.StartsWith("*/") && excludePath.EndsWith("/*"))
                 {
-                    // everything between the first star and the suffix "/*" should be checked against the dir path;
+                    // everything between the prefix "*/" and the suffix "/*" should be checked against the dir path;
                     // example: the current path might be "<parent>/exclude" and the wildcard for excluding this dir
-                    //          would be "*/exclude/*" then, so ends with "/exclude" has to be checked
-                    int lengthForDirectoryNameAndLeadingBackslash = excludePath.Length - 3;
-                    string excludeDir = excludePath.Substring(1, lengthForDirectoryNameAndLeadingBackslash);
+                    //          would be "*/exclude/*" then, so ends with "$exclude" has to be checked where $ is the
+                    //          platform dependent directory separator char
+                    int directoryNameLength = excludePath.Length - 4;
+                    string excludeDir = Path.DirectorySeparatorChar + excludePath.Substring(2, directoryNameLength);
                     if (dirPath.EndsWith(excludeDir))
                     {
                         //Logger.LogInfo("Exclude directory because of wildcard: {0}", dirPath);
