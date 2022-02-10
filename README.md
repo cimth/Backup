@@ -68,10 +68,13 @@ however is not copied during the backup because it is marked as an excluded path
 You can use wildcards for excluding multiple files or directories with configuring only one exclude path.
 Currently the following wildcards are allowed:
 
-|  wildcard pattern  |                                meaning                                     |                          example                                       |
-|         :---:      |                                  ---                                       |                            ---                                         |
-| \*._\<ext\>_       | exclude all files with the given file extension                            | _\*/.class_ for excluding all files with _.class_ extension            |
-| \*/_\<dir\>_/\*    | exclude all sub directories inside the backup location with the given name | _\*/node_modules/\*_ for excluding all _node\_modules_ sub directories |
+|                wildcard pattern                |                                meaning                                     |                          example                                       |
+|                     :---:                      |                                 :---:                                      |                           :---:                                        |
+| \*._\<ext\>_                                   | exclude all files with the given file extension                            | _\*/.class_ for excluding all files with _.class_ extension            |
+| \*/_\<dir\>_/\* <br/>or<br/> \*\\_\<dir\>_\\\* | exclude all sub directories inside the backup location with the given name | _\*/node_modules/\*_ for excluding all _node\_modules_ sub directories |
+
+Note that only the directory wildcard with your system's directory separator character will work. 
+Thus, in Linux you need to use the wildcard \*/_\<dir\>_/\*, while in Windows you have to use the wildcard \*\\_\<dir\>_\\\*.
 
 The following file shows how to use the example wildcards from the table above inside an actual backup profile:
 
