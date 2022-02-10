@@ -10,6 +10,12 @@ The destination directory might be located on another connected device.
 
 ![Screenshot](Screenshot.png)
 
+## Included dependencies
+
+| Dependency            | Version |
+|-----------------------|---------|
+| .NET                  | 6.0     |
+
 ## Configuration
 
 The configuration of the backup is done via XML files. 
