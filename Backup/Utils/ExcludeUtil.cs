@@ -81,7 +81,7 @@ namespace Backup.Utils
         /// Returns true if the given directory should be excluded, else false.
         /// </summary>
         /// <param name="dirPath">the directory path to check</param>
-        /// <param name="excludePaths">all exclude paths (path entries like "*/dir/*" is checked here)</param>
+        /// <param name="excludePaths">all exclude paths (path entries like "*/dir/*" or "*\dir\* is checked here)</param>
         /// <returns>true if the directory should be excluded, else false</returns>
         private bool ContainsExcludedDirectoryWildcard(string dirPath, IList<string> excludePaths)
         {
@@ -90,10 +90,13 @@ namespace Backup.Utils
             // go through each exclude path definition
             foreach (string excludePath in excludePaths)
             {
-                // "*/<dir>/*" in excludePath shows that a the sub dir <dir> should be ignored
-                if (excludePath.StartsWith("*/") && excludePath.EndsWith("/*"))
+                // "*/<dir>/*" or "*\<dir>\*" (dependinc on the directory separator char) in excludePath shows that 
+                // a the sub dir <dir> should be ignored
+                char sep = Path.DirectorySeparatorChar;
+                if (excludePath.StartsWith($"*{sep}") && excludePath.EndsWith($"{sep}*"))
                 {
-                    // everything between the prefix "*/" and the suffix "/*" should be checked against the dir path;
+                    // everything between the prefix "*/" (or "*\") and the suffix "/*" (or "\*") should be checked 
+                    // against the dir path;
                     // example: the current path might be "<parent>/exclude" and the wildcard for excluding this dir
                     //          would be "*/exclude/*" then, so ends with "$exclude" has to be checked where $ is the
                     //          platform dependent directory separator char
