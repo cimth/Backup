@@ -20,9 +20,9 @@ namespace Backup.Utils
         /// </summary>
         public void InitProfilePaths()
         {
-            // init profile directory with absolute path of backup profiles for "../backup_profiles"
-            string scriptPath = Path.GetFullPath(System.AppContext.BaseDirectory);
-            _profileDir = Path.GetFullPath(Path.Combine(scriptPath, "..", "..", "backup_profiles"));
+            // init profile directory with absolute path of backup profiles for "./backup_profiles" inside the app directory
+            string appDirPath = Path.GetFullPath(System.AppContext.BaseDirectory);
+            _profileDir = Path.GetFullPath(Path.Combine(appDirPath, "backup_profiles"));
             
             // if invalid profile path show an error message and exit
             if (!Directory.Exists(_profileDir))
