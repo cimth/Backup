@@ -14,7 +14,7 @@ The destination directory might be located on another connected device.
 
 | Dependency            | Version |
 |-----------------------|---------|
-| .NET                  | 6.0     |
+| .NET                  | 7.0     |
 
 ## Configuration
 
@@ -114,7 +114,7 @@ Note that an object of the type `BackupLocation` corresponds to a directory that
 ## Build and use the application
 
 1. Publish for the desired platform (Linux and Windows tested, Mac should also work)
-2. If not published as 'Self-contained' install the .NET 5 runtime on the device
+2. If not published as 'Self-contained' install the .NET runtime on the device
 3. Create the folder structure described below the chapter 'Configuration'
 4. Create one or more backup profiles (.xml files, structure see in chapter 'Configuration')
 5. Start the application (Linux: Backup, Windows: Backup.exe)
