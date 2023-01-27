@@ -19,13 +19,44 @@ namespace Backup.Utils
                 return true;
             }
             
+            // relative path is listed in exclude paths
+            if (ContainsExcludedRelativePath(filePath, excludePaths))
+            {
+                return true;
+            }
+            
             // file extension is listed in exclude paths
             if (ContainsExcludedFileExtension(filePath, excludePaths))
             {
                 return true;
             }
-            
+
             // none of the above exclude checks did pass, thus the file should not be excluded
+            return false;
+        }
+        
+        /// <summary>
+        /// Returns true if the given file is on a relative path that should be excluded, else false.
+        /// </summary>
+        /// <param name="filePath">the file path to check</param>
+        /// <param name="excludePaths">all exclude paths (path entries like "*/file" and "*\file" is checked here)</param>
+        /// <returns>true if the file should be excluded, else false</returns>
+        private bool ContainsExcludedRelativePath(string filePath, IList<string> excludePaths)
+        {
+            // go through each exclude path definition
+            foreach (string excludePath in excludePaths)
+            {
+                // "*/<file path>" in excludePath shows that a file should be ignored,
+                // everything after the star character should be checked against the given file path ending
+                char sep = Path.DirectorySeparatorChar;
+                if (excludePath.StartsWith($"*{sep}") && filePath.EndsWith(excludePath.Substring(1)))
+                {
+                    //Logger.LogInfo("Exclude relative file path: {0}", filePath);
+                    return true;
+                }
+            }
+
+            // file extension should not be ignored
             return false;
         }
 

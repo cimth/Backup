@@ -74,9 +74,10 @@ however is not copied during the backup because it is marked as an excluded path
 You can use wildcards for excluding multiple files or directories with configuring only one exclude path.
 Currently the following wildcards are allowed:
 
-|                wildcard pattern                |                                meaning                                     |                          example                                       |
-|                     :---:                      |                                 :---:                                      |                           :---:                                        |
-| \*._\<ext\>_                                   | exclude all files with the given file extension                            | _\*/.class_ for excluding all files with _.class_ extension            |
+|                wildcard pattern                |                                  meaning                                   |                                example                                 |
+|:----------------------------------------------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------:|
+|                  \*._\<ext\>_                  |              exclude all files with the given file extension               |      _\*/.class_ for excluding all files with _.class_ extension       |
+|   \*/_\<file\>_ <br/>or<br/> \*\\_\<file\>_    |               exclude all files with the given relative path               |    _\*/.DS_STORE_ for excluding all files with the name _.DS_Store_    |
 | \*/_\<dir\>_/\* <br/>or<br/> \*\\_\<dir\>_\\\* | exclude all sub directories inside the backup location with the given name | _\*/node_modules/\*_ for excluding all _node\_modules_ sub directories |
 
 Note that only the directory wildcard with your system's directory separator character will work. 
