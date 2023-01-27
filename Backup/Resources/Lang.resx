@@ -89,6 +89,9 @@ The 'exclude'-element of the following backup location is missing 'path' sub-ele
     <data name="ErrorXmlExcludeInvalidPath" xml:space="preserve">
         <value>The 'exclude'-path '{0}' is invalid.</value>
     </data>
+    <data name="ErrorXmlMultipleGlobalExcludePaths" xml:space="preserve">
+        <value>The global 'exclude' configuration is only allowed one time per backup file.</value>
+    </data>
     
     <!-- start and end -->
     <data name="Start" xml:space="preserve">

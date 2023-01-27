@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using Backup.Data;
@@ -48,13 +49,16 @@ namespace Backup.Xml
              * convert XML entries to BackupProfile,
              * check for errors while that
              */
+            
+            // parse global exclude paths if valid (might throw a BackupException)
+            IList<string> globalExcludePaths = ParseGlobalExcludePaths(doc);
 
             // parse backup locations inside the profile if valid (might throw a BackupException)
-            IList<BackupLocation> xmlLocs = ParseBackupLocations(doc);
+            IList<BackupLocation> backupLocations = ParseBackupLocations(doc);
 
             // no errors occured while parsing, so create a BackupProfile from the BackupLocations
             string name = Path.GetFileNameWithoutExtension(path);
-            BackupProfile profile = new BackupProfile(name, xmlLocs, dryRun);
+            BackupProfile profile = new BackupProfile(name, globalExcludePaths, backupLocations, dryRun);
             
             // control message
             //Logger.LogInfo(profile.ToString());
@@ -62,6 +66,50 @@ namespace Backup.Xml
             // return the profile
             return profile;
         }
+        
+        /*
+         * Parse global exclude paths
+         */
+        
+        /// <summary>
+        /// Parses the global exclude paths from the given xml document and returns them as list.
+        /// </summary>
+        /// <param name="doc">The xml document to parse from</param>
+        /// <exception cref="BackupException">Thrown if the exclude paths have errors (no path defined etc.)</exception>
+        /// <returns>A list with the global (unprocessed) exclude paths</returns>
+        private IList<string> ParseGlobalExcludePaths(XDocument doc)
+        {
+            // Result list
+            IList<string> globalExcludePaths = new List<string>();
+            
+            // Only continue if global exclude paths are defined.
+            XElement xmlGlobalExclude = doc.XPathSelectElement("/backup_profile/exclude");
+            if (xmlGlobalExclude == null)
+            {
+                return globalExcludePaths;
+            }
+            
+            // Throw an exception if more than one global exclude path definition is given.
+            if (doc.XPathSelectElements("/backup_profile/exclude").Count() > 1)
+            {
+                throw new BackupException(Lang.ErrorXmlMultipleGlobalExcludePaths);
+            }
+
+            // Get all global exclude paths specified in the xml.
+            if (xmlGlobalExclude.HasElements)
+            {
+                foreach (XElement excludePath in xmlGlobalExclude.Elements("path"))
+                {
+                    globalExcludePaths.Add(excludePath.Value);
+                }
+            }
+
+            return globalExcludePaths;
+        }
+        
+        /*
+         * Parse backup locations
+         */
 
         /// <summary>
         /// Parses the backup locations from the given xml document and returns them as list.

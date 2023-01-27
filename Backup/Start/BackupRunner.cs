@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Backup.Data;
 using Backup.Resources;
 using Backup.Utils;
@@ -85,11 +86,14 @@ namespace Backup.Start
                 }
                 else if (Directory.Exists(backupLocation.Path))
                 {
+                    // summarize the global and the backup location specific exclude paths
+                    IList<string> allExcludePaths = backupLocation.ExcludePaths.Concat(profile.GlobalExcludePaths).ToList();
+
                     // backup path is a directory, so backup this directory recursively
                     // => the return value marks if at least one file was updated (for better output to the user)
                     updated = BackupDirectoryRecursively(
                                     backupLocation, backupLocation.Path, backupLocation.Destination, 
-                                    backupLocation.ExcludePaths, profile.DryRun);
+                                    allExcludePaths, profile.DryRun);
                 }
 
                 // set return flag if an file was changed and the flag is not yet set

@@ -137,5 +137,7 @@ Das 'exclude'-Element der folgenden Backup Location hat keine 'path'-Sub-Element
     <data name="SuccessDryRun" xml:space="preserve">
         <value>Probelauf durchgeführt! Die oben aufgeführten Änderungen (falls vorhanden) sind rein visuell. Es wurde aufgrund des Probelaufs keine der Änderungen tatsächlich durchgeführt.</value>
     </data>
-
+    <data name="ErrorXmlMultipleGlobalExcludePaths" xml:space="preserve">
+        <value>Die globale 'exclude' Konfiguration darf nur einmal pro Backup-Datei angegeben werden.</value>
+    </data>
 </root>

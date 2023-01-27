@@ -128,6 +128,13 @@ namespace Backup.Resources {
                 return ResourceManager.GetString("ErrorXmlExcludeInvalidPath", resourceCulture);
             }
         }
+
+        internal static string ErrorXmlMultipleGlobalExcludePaths
+        {
+            get {
+                return ResourceManager.GetString("ErrorXmlMultipleGlobalExcludePaths", resourceCulture);
+            }
+        }
         
         internal static string Start {
             get {

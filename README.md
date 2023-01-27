@@ -99,6 +99,35 @@ The following file shows how to use the example wildcards from the table above i
 </backup_profile>
 ```
 
+### Global exclude paths
+
+You can also set global exclude paths which then will be applied to all listed backup locations.
+
+With the following configuration, all _.class_ files and all _node_modules_ sub directories inside _to\_backup\_1_ 
+and _to\_backup\_2_ will be excluded from the backup.
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<backup_profile>
+    <!-- Exclude in all backup locations -->
+    <exclude>
+        <path>*.class</path>
+        <path>*/node_modules/*</path>
+    </exclude>
+   
+    <backup_location>
+        <src>/home/user/to_backup_1</src>
+        <dest>/media/user/device/is_backup_1</dest>
+    </backup_location>
+
+    <backup_location>
+        <src>/home/user/to_backup_2</src>
+        <dest>/media/user/device/is_backup_2</dest>
+     </backup_location>
+</backup_profile>
+```
+
+
 ## Structure
 
 The `Start` class inside the `Start` namespace marks the entry point for the application. 
