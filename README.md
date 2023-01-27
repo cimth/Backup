@@ -81,7 +81,7 @@ Currently the following wildcards are allowed:
 | \*/_\<dir\>_/\* <br/>or<br/> \*\\_\<dir\>_\\\* | exclude all sub directories inside the backup location with the given name | _\*/node_modules/\*_ for excluding all _node\_modules_ sub directories |
 
 Note that only the directory wildcard with your system's directory separator character will work. 
-Thus, in Linux you need to use the wildcard \*/_\<dir\>_/\*, while in Windows you have to use the wildcard \*\\_\<dir\>_\\\*.
+Thus, in Linux or macOS you need to use the wildcard \*/_\<dir\>_/\*, while in Windows you have to use the wildcard \*\\_\<dir\>_\\\*.
 
 The following file shows how to use the example wildcards from the table above inside an actual backup profile:
 
@@ -114,7 +114,7 @@ Note that an object of the type `BackupLocation` corresponds to a directory that
 
 ## Build and use the application
 
-1. Publish for the desired platform (Linux and Windows tested, Mac should also work)
+1. Publish for the desired platform (Linux, macOS and Windows tested)
 2. If not published as 'Self-contained' install the .NET runtime on the device
 3. Create the folder structure described below the chapter 'Configuration'
 4. Create one or more backup profiles (.xml files, structure see in chapter 'Configuration')
