@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Backup.Utils;
 
-namespace Backup
+namespace Backup.Data
 {
     public class BackupLocation
     {

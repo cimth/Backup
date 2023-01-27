@@ -4,7 +4,7 @@ using Backup.Resources;
 
 namespace Backup.Utils
 {
-    public class ExitUtil
+    public static class ExitUtil
     {
         /// <summary>
         /// Prints an exit message in an error color and waits for ENTER before closing the program so that

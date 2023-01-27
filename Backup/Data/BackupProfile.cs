@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Backup
+namespace Backup.Data
 {
     public class BackupProfile
     {

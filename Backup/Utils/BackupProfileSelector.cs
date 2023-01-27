@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using Backup.Data;
 using Backup.Resources;
 
@@ -21,7 +20,7 @@ namespace Backup.Utils
         public void InitProfilePaths()
         {
             // init profile directory with absolute path of backup profiles for "./backup_profiles" inside the app directory
-            string appDirPath = Path.GetFullPath(System.AppContext.BaseDirectory);
+            string appDirPath = Path.GetFullPath(AppContext.BaseDirectory);
             _profileDir = Path.GetFullPath(Path.Combine(appDirPath, "backup_profiles"));
             
             // if invalid profile path show an error message and exit

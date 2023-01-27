@@ -1,8 +1,8 @@
 using System;
 
-namespace Backup
+namespace Backup.Data
 {
-    public class OutputColors
+    public static class OutputColors
     {
         public static readonly ConsoleColor MainMessages = ConsoleColor.Cyan;
         public static readonly ConsoleColor BackupLocations = ConsoleColor.White;

@@ -15,8 +15,7 @@ namespace Backup.Start
         /// Starts the backup program initiating all required actions like profile choosing, parsing and running
         /// the backup.
         /// </summary>
-        /// <param name="args">unused command line arguments</param>
-        static void Main(string[] args)
+        static void Main()
         {
             // change to English for testing
             //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en");

@@ -1,8 +1,9 @@
 ﻿using System;
+using Backup.Data;
 
 namespace Backup.Utils
 {
-    public class ConsoleWriter
+    public static class ConsoleWriter
     {
         /*
          * HELPING METHODS, PRIVATE ONLY

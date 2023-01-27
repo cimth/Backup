@@ -2,7 +2,7 @@
 
 namespace Backup.Utils
 {
-    class Logger
+    public static class Logger
     {
         /// <summary>
         /// Writes a log info message onto the console. Only runs in debug mode.

@@ -13,7 +13,7 @@ namespace Backup.Xml
         /// <summary>
         /// Loads the BackupProfile saved at the given path.
         /// <br />
-        /// Does not check wheter the given path is valid so this must be verified before calling this
+        /// Does not check whether the given path is valid so this must be verified before calling this
         /// method. However this method checks if the specification of the profile is correct and prints
         /// errors that might occur while parsing.
         /// <br />
@@ -91,7 +91,7 @@ namespace Backup.Xml
             foreach (XElement xmlLoc in xmlLocs)
             {
                 // check for errors and throw a BackupException if an error occurs
-                IList<string> xmlValidationErrors = checkForValidXmlElements(xmlLoc);
+                IList<string> xmlValidationErrors = CheckForValidXmlElements(xmlLoc);
                 if (xmlValidationErrors.Count > 0)
                 {
                     IList<string> errorMessages = new List<string>() { Lang.ErrorXmlNodes, Lang.ErrorMessage };
@@ -99,7 +99,7 @@ namespace Backup.Xml
                 }
                 
                 // no errors, add backup location to internal backup profile
-                locs.Add(convertXml(xmlLoc));
+                locs.Add(ConvertXml(xmlLoc));
             }
 
             // no error while parsing, return the result list
@@ -116,7 +116,7 @@ namespace Backup.Xml
         /// </summary>
         /// <param name="xmlLoc">the xml representation of one backup location</param>
         /// <returns>a list with errors while checking</returns>
-        private IList<string> checkForValidXmlElements(XElement xmlLoc)
+        private IList<string> CheckForValidXmlElements(XElement xmlLoc)
         {
             // result list, might be empty when everything is valid
             IList<string> errorMessages = new List<string>();
@@ -156,7 +156,7 @@ namespace Backup.Xml
         /// </summary>
         /// <param name="xmlLoc">the xml representation of one backup location</param>
         /// <returns>a valid backup location object</returns>
-        private BackupLocation convertXml(XElement xmlLoc) {
+        private BackupLocation ConvertXml(XElement xmlLoc) {
     
             // source and dest path, should already be checked for validity
             string locPath = xmlLoc.Element("src").Value;

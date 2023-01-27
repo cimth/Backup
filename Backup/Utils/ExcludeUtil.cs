@@ -121,7 +121,7 @@ namespace Backup.Utils
             // go through each exclude path definition
             foreach (string excludePath in excludePaths)
             {
-                // "*/<dir>/*" or "*\<dir>\*" (dependinc on the directory separator char) in excludePath shows that 
+                // "*/<dir>/*" or "*\<dir>\*" (depending on the directory separator char) in excludePath shows that 
                 // a the sub dir <dir> should be ignored
                 char sep = Path.DirectorySeparatorChar;
                 if (excludePath.StartsWith($"*{sep}") && excludePath.EndsWith($"{sep}*"))
