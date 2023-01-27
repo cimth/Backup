@@ -1,10 +1,6 @@
 name: Create standalone, single-file win10-x64 EXE 
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
   workflow_dispatch:
     
 
